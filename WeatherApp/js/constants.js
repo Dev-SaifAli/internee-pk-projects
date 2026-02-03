@@ -1,5 +1,5 @@
 // API Configuration
-const CONFIG = Object.freeze({
+export const CONFIG = Object.freeze({
   API_BASE_KEY: "46af05afdd56cc22e2abd59069c24603",
   API_BASE_URL: "https://api.openweathermap.org/data/2.5/",
   TIME_DURATION: 10000,
@@ -7,7 +7,7 @@ const CONFIG = Object.freeze({
 });
 
 // Storage keys
-const STORAGE_KEYS = Object.freeze({
+export const STORAGE_KEYS = Object.freeze({
   USER: "weatherapp_user",
   RECENT_SEARCHES: "weatherapp_recent_searches",
   THEME: "weatherapp_theme",
@@ -36,7 +36,7 @@ const WEATHER_ICONS = Object.freeze({
 });
 
 // App Settings
-const SETTINGS = Object.freeze({
+export const SETTINGS = Object.freeze({
   MAX_RECENT_SEARCHES: 5,
   MAX_FAVORITES: 10,
   DEFAULT_THEME: "light",
@@ -102,6 +102,6 @@ function debounce(func, delay) {
   let timeOutId;
   return function (...args) {
     clearTimeout(timeOutId);
-    timeOutId = setTimeout(fn.apply(this, args), delay);
+    timeOutId = setTimeout(func.apply(this, args), delay);
   };
 }
