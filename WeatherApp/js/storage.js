@@ -121,6 +121,7 @@ class StorageManager {
 
   removeFavorite() {
     try {
+      
       localStorage.removeItem(FAVORITES_KEY);
       return true;
     } catch (error) {
@@ -129,7 +130,13 @@ class StorageManager {
     }
   }
 
-  isFavorite(city){
-    
+  isFavorite(city) {
+    try {
+      const favoritesList = this.getFavorites();
+      return favoritesList.some((obj) => obj.city === city);
+    } catch (error) {
+      console.error(error.message);
+      return false;
+    }
   }
 }
