@@ -50,11 +50,11 @@ class StorageManager {
 
   addRecentSearch(city, weatherData) {
     try {
-      const recentSearch = { city, weatherData };
+      let recentSearch = { city, weatherData };
 
-      const prevSearches = this.getRecentSearches();
+      let prevSearches = this.getRecentSearches();
 
-      const cityIndex = prevSearches.findIndex(
+      let cityIndex = prevSearches.findIndex(
         (obj) => obj.city === recentSearch.city,
       );
 
@@ -85,11 +85,11 @@ class StorageManager {
 
   addFavorite(city, weather) {
     try {
-      const favoriteWeather = { city, weather };
+      let favoriteWeather = { city, weather };
 
-      const prevFavorites = this.getFavorites();
+      let prevFavorites = this.getFavorites();
 
-      const cityIndex = prevFavorites.findIndex(
+      let cityIndex = prevFavorites.findIndex(
         (obj) => obj.city === favoriteWeather.city,
       );
 
@@ -119,10 +119,13 @@ class StorageManager {
     }
   }
 
-  removeFavorite() {
+  removeFavorite(city) {
     try {
-      
-      localStorage.removeItem(FAVORITES_KEY);
+      let existingFavorites = this.getFavorites();
+
+      const filtered = existingFavorites.filter((obj) => obj.city !== city);
+
+      localStorage.setItem(FAVORITES_KEY, JSON.stringify(filtered));
       return true;
     } catch (error) {
       console.error("Failed to remove favorite: ", error.message);
@@ -139,4 +142,52 @@ class StorageManager {
       return false;
     }
   }
+
+  setTheme(theme) {
+    try {
+      localStorage.setItem(THEME_KEY, JSON.stringify(theme));
+      return true;
+    } catch (error) {
+      console.error("Failed to set theme: ", error.message);
+      return false;
+    }
+  }
+
+  getTheme() {
+    try {
+      return JSON.parse(localStorage.getItem(THEME_KEY)) || DEFAULT_THEME;
+    } catch (error) {
+      console.error(error.message);
+      return DEFAULT_THEME;
+    }
+  }
+  clearRecentSearches() {
+    try {
+      localStorage.removeItem(RECENT_SEARCHES_KEY);
+      return true;
+    } catch (error) {
+      console.error(error.message);
+      return false;
+    }
+  }
+  clearFavorites() {
+    try {
+      localStorage.removeItem(FAVORITES_KEY);
+      return true;
+    } catch (error) {
+      console.error(error.message);
+      return false;
+    }
+  }
+  isUserLoggedIn() {
+    try {
+      const user = this.getUser();
+      return user !== null;
+    } catch (error) {
+      console.error(error.message);
+      return false;
+    }
+  }
 }
+
+export default StorageManager;
