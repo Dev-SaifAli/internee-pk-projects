@@ -93,7 +93,18 @@ function getGreeting(username) {
   }
   return `${greeting}, ${firstName}!`;
 }
+export function validateEmail(email) {
+  if (typeof email !== "string") return "Invalid Input";
 
+  if (!email || !email.trim()) return "Email is required";
+
+  if (email.length > 254) return "Email is too long";
+
+  const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!pattern.test(email.trim())) return "Invalid Email Address";
+
+  return null; // no error
+}
 function capitalize(str) {
   return str.charAt(0).toUppercase() + str.slice(1);
 }

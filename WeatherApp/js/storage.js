@@ -10,6 +10,8 @@ const MAX_RECENT_SEARCHES = SETTINGS.MAX_RECENT_SEARCHES;
 const MAX_FAVORITES = SETTINGS.MAX_FAVORITES;
 const DEFAULT_THEME = SETTINGS.DEFAULT_THEME;
 
+
+
 class StorageManager {
   saveUser(email) {
     const user = {
