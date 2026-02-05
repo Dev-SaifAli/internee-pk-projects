@@ -1,9 +1,9 @@
 import StorageManager from "./storage.js";
 import { validateEmail } from "./constants.js";
-
+const storageManager = new StorageManager();
 class AuthManager {
   constructor() {
-    this.currentUser = StorageManager.getUser();
+    this.currentUser = storageManager.getUser();
     this.checkAuthStatus();
   }
 
@@ -21,9 +21,9 @@ class AuthManager {
 
       if (error) return { success: false, error: error };
 
-      const cleanEmail = email.trim.toLowerCase();
+      const cleanEmail = email.trim().toLowerCase();
 
-      StorageManager.saveUser(cleanEmail);
+      storageManager.saveUser(cleanEmail);
 
       this.currentUser = cleanEmail;
 
@@ -35,12 +35,12 @@ class AuthManager {
   }
 
   logout() {
-    StorageManager.clearUser();
+    storageManager.clearUser();
     this.currentUser = null;
     return { success: true, error: null };
   }
   isAuthenticated() {
-    return StorageManager.isUserLoggedIn();
+    return storageManager.isUserLoggedIn();
   }
   getCurrentUser() {
     return this.currentUser ? this.currentUser : null;
@@ -55,3 +55,5 @@ class AuthManager {
     document.getElementById("weatherApp").classList.remove("d-none");
   }
 }
+
+export default AuthManager;

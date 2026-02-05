@@ -1,5 +1,5 @@
 // API Configuration
-export const CONFIG = Object.freeze({
+const CONFIG = Object.freeze({
   API_BASE_KEY: "46af05afdd56cc22e2abd59069c24603",
   API_BASE_URL: "https://api.openweathermap.org/data/2.5/",
   TIME_DURATION: 10000,
@@ -109,7 +109,7 @@ function capitalize(str) {
   return str.charAt(0).toUppercase() + str.slice(1);
 }
 
-function debounce(func, delay) {
+export function debounce(func, delay) {
   let timeOutId;
   return function (...args) {
     clearTimeout(timeOutId);
