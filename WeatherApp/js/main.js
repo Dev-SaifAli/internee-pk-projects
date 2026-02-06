@@ -59,6 +59,7 @@ function setupThemeListener() {
 
     storageManager.setTheme(newTheme);
 
+    document.body.classList.remove(`bg-${currentTheme}`);
     document.body.classList.add(`bg-${newTheme}`);
 
     const icon =
@@ -72,16 +73,17 @@ function setupThemeListener() {
 function setupSearchListener() {
   const searchInput = document.getElementById("searchInput");
 
-  searchInput.addEventListener("input", debouncedSearch);
-}
-const DEBOUNCE_DELAY_MS = 300;
-const debouncedSearch = debounce((e) => {
-  searchWeather(e.target.value);
-}, DEBOUNCE_DELAY_MS);
+  const DEBOUNCE_DELAY_MS = 300;
+  
+  const debouncedSearch = debounce((e) => {
+    searchWeather(e.target.value);
+  }, DEBOUNCE_DELAY_MS);
 
-function searchWeather(city) {
-  if (!city || city.length < 2) {
-    return;
+  function searchWeather(city) {
+    if (!city || city.length < 2) {
+      return;
+    }
+    console.log("Searching for city: ", city);
   }
-  console.log("Searching for city: ", city);
+  searchInput.addEventListener("input", debouncedSearch);
 }
