@@ -20,6 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
   setupThemeListener();
   setupSearchListener();
   updateDate();
+  displayGreeting();
+
+  setupGeolocationListener();
 });
 
 function displayGreeting() {
@@ -202,5 +205,90 @@ function updateDate() {
   const updateDate = document.getElementById("updateDate");
   updateDate.textContent = formatDate();
 }
+function setupGeolocationListener() {
+  const locationBtn = document.getElementById("locationBtn");
+  const loadingState = document.getElementById("loadingState");
+  const errorState = document.getElementById("errorState");
 
+  locationBtn.addEventListener("click", () => {
+    // Check if browser supports geolocation
+    if (!navigator.geolocation) {
+      console.error("Geolocation not supported");
+      errorState.classList.remove("d-none");
+      errorState.textContent = "Geolocation not supported";
+      return;
+    }
 
+    // Show loading
+    loadingState.classList.remove("d-none");
+
+    // Get user's location
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
+        console.log(`Location: ${lat}, ${lon}`);
+
+        fetchWeatherByCoordinates(lat, lon);
+      },
+      (error) => {
+        loadingState.classList.add("d-none");
+        errorState.classList.remove("d-none");
+
+        if (error.code === error.PERMISSION_DENIED) {
+          errorState.textContent = "Location permission denied";
+        } else if (error.code === error.POSITION_UNAVAILABLE) {
+          errorState.textContent = "Location unavailable";
+        } else {
+          errorState.textContent = "Error getting location";
+        }
+
+        console.error("Geolocation error:", error.message);
+      },
+    );
+  });
+}
+async function fetchWeatherByCoordinates(latitude, longitude) {
+  const API_KEY = CONFIG.API_BASE_KEY;
+  const API_URL = CONFIG.API_BASE_URL;
+
+  // Use lat/lon instead of city name
+  const weatherAPI = `${API_URL}/weather?lat=${latitude}&lon=${longitude}&appId=${API_KEY}&units=metric`;
+
+  const loadingState = document.getElementById("loadingState");
+  const errorState = document.getElementById("errorState");
+  const emptyState = document.getElementById("emptyState");
+
+  try {
+    loadingState.classList.remove("d-none");
+    errorState.classList.add("d-none");
+
+    const response = await fetch(weatherAPI);
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch weather");
+    }
+
+    const data = await response.json();
+    console.log("Weather data:", data);
+
+    const weatherDescription = data.weather[0].description;
+    applyWeatherBackground(weatherDescription);
+
+    // Display weather
+    displayWeather(data);
+
+    // Add to recent searches
+    storageManager.addRecentSearch(data.name, data);
+
+    emptyState.classList.add("d-none");
+    errorState.classList.add("d-none");
+    loadingState.classList.add("d-none");
+  } catch (error) {
+    loadingState.classList.add("d-none");
+    errorState.classList.remove("d-none");
+    errorState.textContent = error.message;
+    console.error("Error fetching weather:", error.message);
+  }
+}
