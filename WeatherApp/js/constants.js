@@ -9,9 +9,7 @@ export const CONFIG = Object.freeze({
 // Storage keys
 export const STORAGE_KEYS = Object.freeze({
   USER: "weatherapp_user",
-  RECENT_SEARCHES: "weatherapp_recent_searches",
   THEME: "weatherapp_theme",
-  FAVORITES: "weatherapp_favorites",
 });
 
 const WEATHER_ICONS = Object.freeze({
@@ -57,8 +55,6 @@ export const WEATHER_BACKGROUNDS = Object.freeze({
 });
 // App Settings
 export const SETTINGS = Object.freeze({
-  MAX_RECENT_SEARCHES: 5,
-  MAX_FAVORITES: 10,
   DEFAULT_THEME: "light",
 });
 

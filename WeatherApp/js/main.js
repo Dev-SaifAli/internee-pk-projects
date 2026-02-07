@@ -279,8 +279,6 @@ async function fetchWeatherByCoordinates(latitude, longitude) {
     // Display weather
     displayWeather(data);
 
-    // Add to recent searches
-    storageManager.addRecentSearch(data.name, data);
 
     emptyState.classList.add("d-none");
     errorState.classList.add("d-none");
