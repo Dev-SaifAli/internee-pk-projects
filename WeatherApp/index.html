@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 </head>
 
-<body class="bg-light">
+<body>
 
     <!-- Auth Container -->
     <div id="authPage" class="d-flex align-items-center justify-content-center min-vh-100 ">
@@ -55,7 +55,7 @@
                             <label for="emailInput" class="form-label fw-bold">Email Address</label>
                             <input type="email" class="form-control form-control-lg" id="emailInput" name="email"
                                 placeholder="Enter your email" required aria-label="Email address">
-                            <div class="invalid-feedback" id="emailError">
+                            <div class="invalid-feedback d-none" id="emailError">
                                 Please provide a valid email address.
                             </div>
                             <div class="valid-feedback">
@@ -219,7 +219,7 @@
         </div>
 
         <!-- Weather Display -->
-        <div id="weatherDisplay" class="d-none">
+        <div id="weatherDisplay" class="">
             <div class="container">
 
                 <!-- Current Weather Card -->
@@ -250,7 +250,7 @@
                                             <span id="temp">15</span>°C
                                         </div>
                                         <p class="lead text-muted mb-0">
-                                            Feels like <strong id="feelsLike">12°C</strong>
+                                            Feels like <strong id="feelsLike">12 <span>°C</span> </strong>
                                         </p>
                                     </div>
                                 </div>

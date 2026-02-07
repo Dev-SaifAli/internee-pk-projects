@@ -1,7 +1,7 @@
 // API Configuration
-const CONFIG = Object.freeze({
+export const CONFIG = Object.freeze({
   API_BASE_KEY: "46af05afdd56cc22e2abd59069c24603",
-  API_BASE_URL: "https://api.openweathermap.org/data/2.5/",
+  API_BASE_URL: "https://api.openweathermap.org/data/2.5",
   TIME_DURATION: 10000,
   CACHE_DURATION: 30 * 60 * 1000,
 });
@@ -49,7 +49,7 @@ export const SETTINGS = Object.freeze({
  * @returns {string} Emoji icon
  */
 
-function getWeatherIcon(description) {
+export function getWeatherIcon(description) {
   const desc = description.toLowerCase();
 
   for (const [key, icon] of Object.entries(WEATHER_ICONS)) {
@@ -61,7 +61,7 @@ function getWeatherIcon(description) {
   return "🌤️";
 }
 
-function formatTemp(temp) {
+export function formatTemp(temp) {
   return Math.round(temp);
 }
 
@@ -78,7 +78,7 @@ function formatDate(timestamp) {
   return date.toLocaleDateString("en", options);
 }
 
-function getGreeting(username) {
+export function getGreeting(username) {
   const hour = new Date().getHours();
   let firstName = username.split("@")[0];
   let greeting;
