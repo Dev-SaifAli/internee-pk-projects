@@ -35,6 +35,26 @@ const WEATHER_ICONS = Object.freeze({
   drizzle: "🌧️",
 });
 
+export const WEATHER_BACKGROUNDS = Object.freeze({
+  "clear sky":
+    "https://images.unsplash.com/photo-1495567720989-cebdbdd97913?w=1200&h=800&fit=crop&q=80",
+  "few clouds":
+    "https://images.unsplash.com/photo-1463947628408-f8581a2f4aca?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "scattered clouds":
+    "https://images.unsplash.com/photo-1742279461818-272fd20feb76?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "overcast clouds":
+    "https://images.unsplash.com/https://images.unsplash.com/photo-1500740516770-92bd004b996e?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D-1535694194199-ab7121d52c6f?w=1200&h=800&fit=crop&q=80",
+  "light rain":
+    "https://images.unsplash.com/photo-1613916937972-a6177bff0b95?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  rain: "https://images.unsplash.com/photo-1534265854528-0c270f95e0d8?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  thunderstorm:
+    "https://images.unsplash.com/photo-1584267385289-81fdaa6efe7a?q=80&w=844&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  snow: "https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  mist: "https://images.unsplash.com/photo-1482841628122-9080d44bb807?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  haze: "https://images.unsplash.com/photo-1599059021750-82716ae2b661?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  smoke:
+    "https://images.unsplash.com/photo-1666264474757-14530767b454?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+});
 // App Settings
 export const SETTINGS = Object.freeze({
   MAX_RECENT_SEARCHES: 5,
@@ -65,15 +85,15 @@ export function formatTemp(temp) {
   return Math.round(temp);
 }
 
-function formatTime(timestamp) {
+export function formatTime(timestamp) {
   const date = new Date(timestamp * 1000);
   const hours = String(date.getHours()).padStart(2, "0");
   const minutes = String(date.getMinutes()).padStart(2, "0");
   return `${hours}:${minutes}`;
 }
 
-function formatDate(timestamp) {
-  const date = new Date(timestamp * 1000);
+export function formatDate() {
+  const date = new Date();
   const options = { month: "short", day: "numeric", weekday: "short" };
   return date.toLocaleDateString("en", options);
 }
@@ -91,7 +111,7 @@ export function getGreeting(username) {
   } else {
     greeting = "🌙 Good Night";
   }
-  return `${greeting}, ${firstName}!`;
+  return `${greeting}, ${firstName}!👋`;
 }
 export function validateEmail(email) {
   if (typeof email !== "string") return "Invalid Input";

@@ -24,8 +24,7 @@ class AuthManager {
       const cleanEmail = email.trim().toLowerCase();
 
       storageManager.saveUser(cleanEmail);
-
-      this.currentUser = cleanEmail;
+      this.currentUser = storageManager.getUser();
 
       return { success: true, error: null };
     } catch (error) {
@@ -37,6 +36,7 @@ class AuthManager {
   logout() {
     storageManager.clearUser();
     this.currentUser = null;
+
     return { success: true, error: null };
   }
   isAuthenticated() {
