@@ -3,7 +3,7 @@
 A real-time weather app with authentication, geolocation, and persistent storage.
 
 ## Live Demo
-[WeatherVault]((https://weathervault.vercel.app/))
+[WeatherVault](https://weathervault.vercel.app/)
 
 ## Features
 - User authentication with email
