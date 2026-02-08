@@ -198,6 +198,8 @@ function displayWeather(data) {
   const visibility = document.getElementById("visibility");
   const tempMin = document.getElementById("tempMin");
   const updateTime = document.getElementById("updateTime");
+  const sunrise = document.getElementById("sunrise");
+  const sunset = document.getElementById("sunset");
 
   weatherIcon.textContent = getWeatherIcon(data.weather[0].description);
   cityName.textContent = data.name;
@@ -209,6 +211,8 @@ function displayWeather(data) {
   visibility.textContent = data.visibility;
   tempMin.textContent = formatTemp(data.main.temp_min);
   updateTime.textContent = formatTime(data.dt);
+  sunrise.textContent = formatTime(data.sys.sunrise);
+  sunset.textContent = formatTime(data.sys.sunset);
 }
 
 function updateDate() {
