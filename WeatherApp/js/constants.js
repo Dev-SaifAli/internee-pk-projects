@@ -41,7 +41,7 @@ export const WEATHER_BACKGROUNDS = Object.freeze({
   "scattered clouds":
     "https://images.unsplash.com/photo-1742279461818-272fd20feb76?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   "overcast clouds":
-    "https://images.unsplash.com/https://images.unsplash.com/photo-1500740516770-92bd004b996e?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D-1535694194199-ab7121d52c6f?w=1200&h=800&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1500740516770-92bd004b996e?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D-1535694194199-ab7121d52c6f?w=1200&h=800&fit=crop&q=80",
   "light rain":
     "https://images.unsplash.com/photo-1613916937972-a6177bff0b95?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   rain: "https://images.unsplash.com/photo-1534265854528-0c270f95e0d8?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -93,10 +93,13 @@ export function formatDate() {
   const options = { month: "short", day: "numeric", weekday: "short" };
   return date.toLocaleDateString("en", options);
 }
-
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
 export function getGreeting(username) {
   const hour = new Date().getHours();
-  let firstName = username.split("@")[0];
+  let firstName = username.split("@")[0].split(".")[0];
+  let capitalizeFirstName  = capitalize(firstName)
   let greeting;
   if (hour < 12) {
     greeting = "🌅 Good Morning";
@@ -107,7 +110,7 @@ export function getGreeting(username) {
   } else {
     greeting = "🌙 Good Night";
   }
-  return `${greeting}, ${firstName}!👋`;
+  return `${greeting}, ${capitalizeFirstName}!👋`;
 }
 export function validateEmail(email) {
   if (typeof email !== "string") return "Invalid Input";
@@ -121,9 +124,7 @@ export function validateEmail(email) {
 
   return null; // no error
 }
-function capitalize(str) {
-  return str.charAt(0).toUppercase() + str.slice(1);
-}
+
 
 export function debounce(func, delay) {
   let timeOutId;

@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupSearchListener();
   updateDate();
   displayGreeting();
-
+  updateTitle();
   setupGeolocationListener();
 });
 
@@ -59,6 +59,7 @@ function setupFormListener() {
     if (result.success) {
       console.log("User logged In successfully!");
       authManager.checkAuthStatus();
+      updateTitle();
       displayGreeting();
 
       form.email.value = "";
@@ -77,6 +78,7 @@ function setupLogoutListener() {
   logOutBtn.addEventListener("click", () => {
     authManager.logout();
     authManager.checkAuthStatus();
+    updateTitle();
     greetingMsg.textContent = "Welcome User!";
   });
 }
@@ -177,6 +179,14 @@ async function fetchWeather(city) {
     console.error(`Error fetching weather: ${error.message}`);
   }
 }
+function updateTitle() {
+  if (authManager.isAuthenticated()) {
+    document.title =
+      "WeatherVault - Check weather updates for your favorite cities";
+  } else {
+    document.title = "WeatherVault - LogIn";
+  }
+}
 function displayWeather(data) {
   const weatherIcon = document.getElementById("weatherIcon");
   const cityName = document.getElementById("cityName");
@@ -237,11 +247,11 @@ function setupGeolocationListener() {
         errorState.classList.remove("d-none");
 
         if (error.code === error.PERMISSION_DENIED) {
-          errorState.textContent = "Location permission denied";
+          errorTitle.textContent = "Location permission denied";
         } else if (error.code === error.POSITION_UNAVAILABLE) {
-          errorState.textContent = "Location unavailable";
+          errorTitle.textContent = "Location unavailable";
         } else {
-          errorState.textContent = "Error getting location";
+          errorTitle.textContent = "Error getting location";
         }
 
         console.error("Geolocation error:", error.message);
@@ -259,6 +269,7 @@ async function fetchWeatherByCoordinates(latitude, longitude) {
   const loadingState = document.getElementById("loadingState");
   const errorState = document.getElementById("errorState");
   const emptyState = document.getElementById("emptyState");
+  const errorTitle = document.getElementById("errorTitle");
 
   try {
     loadingState.classList.remove("d-none");
@@ -279,14 +290,13 @@ async function fetchWeatherByCoordinates(latitude, longitude) {
     // Display weather
     displayWeather(data);
 
-
     emptyState.classList.add("d-none");
     errorState.classList.add("d-none");
     loadingState.classList.add("d-none");
   } catch (error) {
     loadingState.classList.add("d-none");
     errorState.classList.remove("d-none");
-    errorState.textContent = error.message;
+    errorTitle.textContent = error.message;
     console.error("Error fetching weather:", error.message);
   }
 }
