@@ -79,6 +79,7 @@ function setupLogoutListener() {
     authManager.logout();
     authManager.checkAuthStatus();
     updateTitle();
+    document.body.style.background = "";
     greetingMsg.textContent = "Welcome User!";
   });
 }
@@ -95,6 +96,13 @@ function setupThemeListener() {
     document.body.classList.remove(`bg-${currentTheme}`);
     document.body.classList.add(`bg-${newTheme}`);
 
+    if (newTheme === "dark") {
+      document.body.classList.add("text-opacity-75");
+      document.body.classList.add("text-white");
+    } else {
+      document.body.classList.remove("text-opacity-75");
+      document.body.classList.remove("text-white");
+    }
     const icon =
       newTheme === "dark"
         ? `<i class="bi bi-brightness-high-fill"></i>`
