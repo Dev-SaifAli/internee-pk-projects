@@ -228,11 +228,14 @@ function updateDate() {
   updateDate.textContent = formatDate();
 }
 function setupGeolocationListener() {
+  const emptyLocationBtn = document.getElementById("emptyLocationBtn");
   const locationBtn = document.getElementById("locationBtn");
   const loadingState = document.getElementById("loadingState");
   const errorState = document.getElementById("errorState");
+  const errorTitle = document.getElementById("errorTitle");
 
-  locationBtn.addEventListener("click", () => {
+  function handleLocationClick() {
+    console.log(emptyLocationBtn);
     // Check if browser supports geolocation
     if (!navigator.geolocation) {
       console.error("Geolocation not supported");
@@ -240,7 +243,6 @@ function setupGeolocationListener() {
       errorState.textContent = "Geolocation not supported";
       return;
     }
-
     // Show loading
     loadingState.classList.remove("d-none");
 
@@ -269,8 +271,16 @@ function setupGeolocationListener() {
         console.error("Geolocation error:", error.message);
       },
     );
-  });
+  }
+
+  if (emptyLocationBtn) {
+    emptyLocationBtn.addEventListener("click", handleLocationClick);
+  }
+  if (locationBtn) {
+    locationBtn.addEventListener("click", handleLocationClick);
+  }
 }
+
 async function fetchWeatherByCoordinates(latitude, longitude) {
   const API_KEY = CONFIG.API_BASE_KEY;
   const API_URL = CONFIG.API_BASE_URL;
