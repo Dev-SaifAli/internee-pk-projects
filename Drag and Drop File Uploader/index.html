@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop File Uploader</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="upload-header">
+            <h1>Upload file</h1>
+            <p>Add your files or documents here</p>
+        </div>
+
+
+
+        <div class="upload-box">
+            <div id="dropZone">
+                <div class="upload-icon">
+                    <i class="fas fa-file-arrow-up"></i>
+                </div>
+
+                <div class="upload-text">
+                    <p>Drop your files here, <span class="click-link">or click to browse</span></p>
+                </div>
+            </div>
+
+            <div class="upload-info">
+                <div class="file-types">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Supported format: .jpg, .png, .gif</span>
+                </div>
+
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-container" id="progressContainer">
+                <div class="progress-bar-bg">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="progressText">0%</span>
+                </div>
+            </div>
+
+            <!-- Error Message -->
+            <div class="error-message" id="errorMessage"></div>
+
+            <!-- Success Message -->
+            <div class="success-message" id="successMessage"></div>
+
+            <!-- Preview Section -->
+            <div class="preview-section" id="previewSection">
+                <h3>Uploaded Images</h3>
+                <div class="preview-grid" id="previewGrid"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
