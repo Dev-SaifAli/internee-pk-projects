@@ -11,25 +11,123 @@ const clickLink = document.querySelector(".click-link");
 const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
 
 window.addEventListener("load", () => {
-  loadSavedImages();
+  initPreview();
 });
 
+clickLink.addEventListener("click", () => {
+  fileInput.click();
+});
 
+fileInput.addEventListener("change", (e) => {
+  const files = e.target.files;
+  if (files.length > 0) {
+    handleFiles(files);
+  }
+});
 
+dropZone.addEventListener("dragover", (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  dropZone.classList.add("active");
+});
+
+dropZone.addEventListener("dragleave", (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  dropZone.classList.remove("active");
+});
+
+dropZone.addEventListener("drop", (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  dropZone.classList.remove("active");
+
+  const files = e.dataTransfer.files;
+  if (files.length > 0) {
+    handleFiles(files);
+  }
+});
+
+function handleFiles(files) {
+  clearMessages();
+  Array.from(files).forEach((file) => {
+    if (!allowedTypes.includes(file.type)) {
+      showError(`Invalid file type:${file.type}. Only JPG, PNG, GIF allowed!`);
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      const dataURL = e.target.result;
+
+      simulateProgress();
+
+      saveImage(dataURL);
+
+      displayPreview(dataURL);
+
+      showSuccess(`${file.name} upload successfully`);
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function showError(error) {
+  errorMessage.style.display = "block";
+  errorMessage.textContent = error;
+}
+
+function showSuccess(success) {
+  successMessage.style.display = "block";
+
+  successMessage.textContent = success;
+}
+
+function clearMessages() {
+  errorMessage.textContent = "";
+  successMessage.textContent = "";
+  successMessage.style.display = "none";
+  errorMessage.style.display = "none";
+}
+function simulateProgress() {
+  progressContainer.classList.add("show");
+  let progress = 0;
+
+  const interval = setInterval(() => {
+    progress += Math.random() * 30;
+
+    if (progress >= 100) {
+      progress = 100;
+      clearInterval(interval);
+      setTimeout(() => {
+        progressContainer.classList.remove("show");
+        progressBar.style.width = "0%";
+        progressText.innerHTML = "0%";
+      }, 1000);
+    }
+
+    progressBar.style.width = progress + "%";
+    progressText.innerHTML = Math.round(progress) + "%";
+  }, 200);
+}
 function loadSavedImages() {
   try {
-    const images = JSON.parse(localStorage.getItem("uploadedImages")) || [];
-    if (images.length > 0) {
-      previewSection.classList.add("show");
+    let images = JSON.parse(localStorage.getItem("uploadedImages")) || [];
 
-      images.forEach((dataURL) => {
-        displayPreview(dataURL);
-      });
-    }
-    return true;
+    return images;
   } catch (error) {
     console.error(`Failed to load images: ${error.message}`);
     return false;
+  }
+}
+function initPreview() {
+  let images = loadSavedImages();
+  if (images.length > 0) {
+    previewSection.classList.add("show");
+    images.forEach((dataURL) => {
+      displayPreview(dataURL);
+    });
   }
 }
 
@@ -60,11 +158,11 @@ function displayPreview(dataURL) {
 
 function removeImageFromStorage(dataURL) {
   try {
-    const images = loadSavedImages();
+    let images = loadSavedImages();
 
     if (images) {
       images = images.filter((img) => img != dataURL);
-      saveImage(images);
+      localStorage.setItem("uploadedImages", JSON.stringify(images));
     }
     return true;
   } catch (error) {
@@ -75,11 +173,11 @@ function removeImageFromStorage(dataURL) {
 
 function saveImage(dataURL) {
   try {
-    const images = loadSavedImages();
-    if (images) {
-      images.push(dataURL);
-      localStorage.setItem("uploadedImages", JSON.stringify(images));
-    }
+    let images = loadSavedImages();
+
+    images.push(dataURL);
+    localStorage.setItem("uploadedImages", JSON.stringify(images));
+
     return true;
   } catch (error) {
     console.error("Failed to save image :", error.message);
