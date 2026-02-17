@@ -65,9 +65,11 @@ function handleFiles(files) {
 
       saveImage(dataURL);
 
-      displayPreview(dataURL);
+      simulateProgress(() => {
+        displayPreview(dataURL);
 
-      showSuccess(`${file.name} upload successfully`);
+        showSuccess(`${file.name} upload successfully`);
+      });
     };
     reader.readAsDataURL(file);
   });
@@ -90,8 +92,9 @@ function clearMessages() {
   successMessage.style.display = "none";
   errorMessage.style.display = "none";
 }
-function simulateProgress() {
+function simulateProgress(callback) {
   progressContainer.classList.add("show");
+
   let progress = 0;
 
   const interval = setInterval(() => {
@@ -100,10 +103,13 @@ function simulateProgress() {
     if (progress >= 100) {
       progress = 100;
       clearInterval(interval);
+
       setTimeout(() => {
         progressContainer.classList.remove("show");
         progressBar.style.width = "0%";
         progressText.innerHTML = "0%";
+        if(callback) callback();
+
       }, 1000);
     }
 
@@ -123,6 +129,7 @@ function loadSavedImages() {
 }
 function initPreview() {
   let images = loadSavedImages();
+
   if (images.length > 0) {
     previewSection.classList.add("show");
     images.forEach((dataURL) => {
@@ -132,6 +139,7 @@ function initPreview() {
 }
 
 function displayPreview(dataURL) {
+  previewSection.classList.add("show");
   const previewItem = document.createElement("div");
   previewItem.className = "preview-item";
 
