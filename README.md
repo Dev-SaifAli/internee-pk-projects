@@ -27,3 +27,11 @@ Collection of work completed during my virtual internship program focusing on we
 ![Bootstrap](https://img.shields.io/badge/-Bootstrap-7952B3?style=flat&logo=bootstrap&logoColor=white)   
 **[View Project →](./WeatherApp/)**
 
+### Task 3: Drag and Drop File Uploader
+**Status:** ✅ Completed  
+**Description:** Created a Image File Uploader using FileReaderAPI, File and Drag/Drop events for previewing Image File and error handling.   
+**Technologies:** ![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=flat&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/-CSS3-1572B6?style=flat&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)  
+**[View Project →](./Drag%20and%20Drop%20File%20Uploader/)**
+
