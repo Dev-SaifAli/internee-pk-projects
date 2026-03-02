@@ -57,8 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function handleNext() {
     if (!validateStep(state.currentStep)) {
       // Shake the button if validation fails
-      nextBtn.classList.add("animate-shake-y");
-      setTimeout(() => nextBtn.classList.remove("animate-shake-y"), 500);
+      nextBtn.classList.add("animate-shake");
+      setTimeout(() => nextBtn.classList.remove("animate-shake"), 500);
       return;
     }
 
@@ -78,9 +78,45 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  
+  function validateField(input) {
+    if (!input.hasAttribute("required") && input.value.trim() === "") {
+      clearError(input);
+      return true;
+    }
 
-  
+    let isValid = true;
+    let errorMessage = "";
+
+    if (input.hasAttribute("required") && !input.value.trim()) {
+      isValid = false;
+    } else if (input.type === "email" && !validateEmail(input.value)) {
+      isValid = false;
+    } else if (input.minLength > 0 && input.value.length < input.minLength) {
+      isValid = false;
+    }
+
+    if (!isValid) {
+      showError(input);
+    } else {
+      clearError(input);
+    }
+
+    return isValid;
+  }
+
+  function validateStep(step) {
+    const currentStepEl = document.getElementById(`step${step}`);
+    const inputs = currentStepEl.querySelectorAll("input");
+    let isStepValid = true;
+
+    inputs.forEach((input) => {
+      if (!validateField(input)) {
+        isStepValid = false;
+      }
+    });
+
+    return isStepValid;
+  }
 
   function showError(input) {
     input.classList.add("invalid", "border-red-500", "bg-red-50");
