@@ -85,7 +85,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     let isValid = true;
-    let errorMessage = "";
 
     if (input.hasAttribute("required") && !input.value.trim()) {
       isValid = false;
@@ -119,15 +118,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function showError(input) {
-    input.classList.add("invalid", "border-red-500", "bg-red-50");
-    const errorMsg = input.parentElement.querySelector(".error-msg");
-    console.log(errorMsg);
+    input.classList.add("border-red-500", "bg-red-50");
+    const container = input.closest("div"); // Finds the nearest wrapping div
+    const errorMsg = container.querySelector(".error-msg");
     if (errorMsg) errorMsg.classList.remove("hidden");
   }
 
   function clearError(input) {
-    input.classList.remove("invalid", "border-red-500", "bg-red-50");
-    const errorMsg = input.parentElement.querySelector(".error-msg");
+    input.classList.remove("border-red-500", "bg-red-50");
+    const container = input.closest("div");
+    const errorMsg = container.querySelector(".error-msg");
     if (errorMsg) errorMsg.classList.add("hidden");
   }
 

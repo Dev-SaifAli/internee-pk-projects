@@ -154,7 +154,6 @@ main {
   color: #d92d20;
   font-size: 12px;
   margin-top: 4px;
-  display: none;
 }
 
 .field-group input.invalid + .error-msg {
