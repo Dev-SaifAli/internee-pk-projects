@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,32 +10,44 @@
     <link rel="stylesheet" href="style.css">
 
 </head>
+
 <body class="bg-[#0f0f0f] text-gray-100 overflow-hidden">
     <div class="flex h-screen w-full overflow-hidden">
-        
+
         <!-- SIDEBAR (Reference Inspired) -->
         <aside class="w-72 bg-[#121212] border-r border-white/5 flex flex-col p-4 hidden md:flex">
             <div class="flex items-center gap-2 mb-8 px-2">
-                <div class="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center font-bold text-lg italic">Q</div>
+                <div class="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center font-bold text-lg italic">
+                    Q</div>
                 <span class="text-xl font-semibold tracking-tight">Qubi</span>
             </div>
 
-            <button class="w-full bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl py-2.5 px-4 mb-6 flex items-center gap-3 transition-all text-sm font-medium">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            <button
+                class="w-full bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl py-2.5 px-4 mb-6 flex items-center gap-3 transition-all text-sm font-medium">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
                 New Chat
             </button>
 
             <nav class="flex-1 space-y-1 overflow-y-auto custom-scroll">
                 <div class="px-2 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">Navigation</div>
                 <a href="#" class="flex items-center gap-3 px-3 py-2 bg-white/10 rounded-lg text-sm text-white">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
                     Home
                 </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-white/5 rounded-lg text-sm text-gray-400 transition-colors">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+                <a href="#"
+                    class="flex items-center gap-3 px-3 py-2 hover:bg-white/5 rounded-lg text-sm text-gray-400 transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                    </svg>
                     Chats
                 </a>
-                
+
                 <div class="pt-6 px-2 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">Recent</div>
                 <!-- <div class="space-y-1">
                     <div class="px-3 py-2 text-sm text-gray-500 hover:text-gray-300 cursor-pointer truncate">Marketing Plan March</div>
@@ -43,8 +56,12 @@
             </nav>
 
             <div class="mt-auto border-t border-white/5 pt-4">
-                <button id="clearChatBtn" class="flex items-center gap-3 px-3 py-2 w-full hover:bg-red-500/10 rounded-lg text-sm text-gray-500 hover:text-red-400 transition-all">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                <button id="clearChatBtn"
+                    class="flex items-center gap-3 px-3 py-2 w-full hover:bg-red-500/10 rounded-lg text-sm text-gray-500 hover:text-red-400 transition-all">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
                     Clear History
                 </button>
             </div>
@@ -52,37 +69,44 @@
 
         <!-- MAIN CONTENT AREA -->
         <main class="flex-1 flex flex-col bg-white text-gray-900 chat-container relative">
-            
+
             <!-- HEADER -->
-            <header class="h-16 flex items-center justify-between px-8 bg-white/60 backdrop-blur-md border-b border-gray-100 z-10">
-                <div class="flex items-center gap-4">
+            <header class="h-16 glass-bg  flex items-center justify-between px-8  border-b border-gray-100 z-10">
+                <div class="flex items-center gap-4 ">
                     <h2 class="text-xl font-bold tracking-tight text-purple-700">Qubi</h2>
                 </div>
-               
+
             </header>
 
             <!-- CHAT AREA -->
             <div id="chatMessages" class="flex-1 overflow-y-auto px-4 md:px-24 py-10 custom-scroll space-y-8">
                 <!-- Welcome UI (Reference Inspired) -->
-                <div id="welcomeMessage" class="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
+                <div id="welcomeMessage"
+                    class="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
                     <div class="w-14 h-14 bg-[#1a1a1a] rounded-2xl flex items-center justify-center mb-8 shadow-xl">
                         <div class="grid grid-cols-2 gap-1 p-3">
-                            <div class="w-2 h-2 bg-white rounded-full"></div><div class="w-2 h-2 bg-white/30 rounded-full"></div>
-                            <div class="w-2 h-2 bg-white/30 rounded-full"></div><div class="w-2 h-2 bg-white rounded-full"></div>
+                            <div class="w-2 h-2 bg-white rounded-full"></div>
+                            <div class="w-2 h-2 bg-white/30 rounded-full"></div>
+                            <div class="w-2 h-2 bg-white/30 rounded-full"></div>
+                            <div class="w-2 h-2 bg-white rounded-full"></div>
                         </div>
                     </div>
-                    <h1 class="text-4xl font-bold mb-4 tracking-tight">How can we <span class="text-purple-600">assist</span> you today?</h1>
-                    <p class="text-gray-500 max-w-xl mb-12 text-lg">Get expert guidance powered by AI agents specializing in Sales, Marketing, and Negotiation. Start your conversation with ease.</p>
-                    
-                    
+                    <h1 class="text-4xl font-bold mb-4 tracking-tight">How can we <span
+                            class="text-purple-600">assist</span> you today?</h1>
+                    <p class="text-gray-500 max-w-xl mb-12 text-lg">Get expert guidance powered by AI agents
+                        specializing in Sales, Marketing, and Negotiation. Start your conversation with ease.</p>
+
+
                 </div>
 
                 <!-- TYPING INDICATOR (Moves with messages) -->
                 <div id="typingIndicator" class="hidden flex items-start gap-4 message-slide-in">
                     <div class="w-8 h-8 rounded-full bg-[#dcf8c6] flex items-center justify-center">
                         <div class="w-4 h-4 grid grid-cols-2 gap-0.5">
-                            <div class="w-1.5 h-1.5 bg-green-800 rounded-full"></div><div class="w-1.5 h-1.5 bg-green-800/30 rounded-full"></div>
-                            <div class="w-1.5 h-1.5 bg-green-800/30 rounded-full"></div><div class="w-1.5 h-1.5 bg-green-800 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-green-800 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-green-800/30 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-green-800/30 rounded-full"></div>
+                            <div class="w-1.5 h-1.5 bg-green-800 rounded-full"></div>
                         </div>
                     </div>
                     <div class="flex gap-1.5 py-3 px-4 bg-gray-50 rounded-2xl border border-gray-100">
@@ -94,38 +118,54 @@
             </div>
 
             <!-- INPUT AREA (Refined Qubi Style) -->
-            <div class="p-4 md:px-24 md:pb-10 bg-transparent">
+            <div class=" p-4 md:px-24 md:pb-10 bg-transparent ">
                 <form id="chatForm" class="relative max-w-5xl mx-auto">
-                    <div class="bg-[#f4f4f4] rounded-[32px] p-2 pr-3 flex items-center gap-3 border border-transparent focus-within:bg-white focus-within:border-purple-200 shadow-sm transition-all group">
-                        <button type="button" id="emojiBtn" class="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:bg-gray-200 transition-colors">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
+                    <div
+                        class="bg-[#f4f4f4] rounded-[32px] max-w-[70%]  p-2 pr-3 flex items-center justify-center gap-3 border border-transparent focus-within:bg-white focus-within:border-purple-200 shadow-sm transition-all group">
+                        <button type="button" id="emojiBtn"
+                            class="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:bg-gray-200 transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                            </svg>
                         </button>
-                        <input 
-                            type="text" 
-                            id="messageInput" 
-                            placeholder="type your prompt here" 
-                            class="flex-1 bg-transparent py-3 text-lg outline-none text-gray-800 placeholder-gray-400"
-                            autocomplete="off"
-                        >
+                        <textarea id="messageInput" rows="1" placeholder="type your prompt here"
+                            class="flex-1 bg-transparent py-3 text-lg outline-none text-gray-800 placeholder-gray-400 resize-none max-h-40 overflow-y-auto no-scrollbar transition-[height] duration-200 ease-in-out"
+                            autocomplete="off"></textarea>
                         <div class="flex items-center gap-2">
-                            <button type="button" class="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:bg-gray-200 transition-colors">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                            <button type="button"
+                                class="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:bg-gray-200 transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                                </svg>
                             </button>
-                            <button type="submit" class="w-11 h-11 bg-[#d6ffc1] hover:bg-[#c2f6a8] text-black rounded-full flex items-center justify-center transition-all shadow-sm active:scale-95">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            <button type="submit"
+                                class="w-11 h-11 bg-[#d6ffc1] hover:bg-[#c2f6a8] text-black rounded-full flex items-center justify-center transition-all shadow-sm active:scale-95">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                        d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
                             </button>
                         </div>
                     </div>
-                    
+
                     <!-- EMOJI PICKER -->
-                    <div id="emojiPicker" class="hidden absolute bottom-[120%] left-0 bg-white rounded-3xl p-4 shadow-2xl border border-gray-100 z-50">
+                    <div id="emojiPicker"
+                        class="hidden absolute bottom-[120%] left-0 bg-white rounded-3xl p-4 shadow-2xl border border-gray-100 z-50">
                         <div class="grid grid-cols-6 gap-3">
-                            <span class="emoji-item cursor-pointer text-2xl hover:scale-125 transition-transform" data-emoji="😊">😊</span>
-                            <span class="emoji-item cursor-pointer text-2xl hover:scale-125 transition-transform" data-emoji="🚀">🚀</span>
-                            <span class="emoji-item cursor-pointer text-2xl hover:scale-125 transition-transform" data-emoji="🔥">🔥</span>
-                            <span class="emoji-item cursor-pointer text-2xl hover:scale-125 transition-transform" data-emoji="💡">💡</span>
-                            <span class="emoji-item cursor-pointer text-2xl hover:scale-125 transition-transform" data-emoji="✨">✨</span>
-                            <span class="emoji-item cursor-pointer text-2xl hover:scale-125 transition-transform" data-emoji="👍">👍</span>
+                            <span class="emoji-item cursor-pointer text-2xl hover:scale-125 transition-transform"
+                                data-emoji="😊">😊</span>
+                            <span class="emoji-item cursor-pointer text-2xl hover:scale-125 transition-transform"
+                                data-emoji="🚀">🚀</span>
+                            <span class="emoji-item cursor-pointer text-2xl hover:scale-125 transition-transform"
+                                data-emoji="🔥">🔥</span>
+                            <span class="emoji-item cursor-pointer text-2xl hover:scale-125 transition-transform"
+                                data-emoji="💡">💡</span>
+                            <span class="emoji-item cursor-pointer text-2xl hover:scale-125 transition-transform"
+                                data-emoji="✨">✨</span>
+                            <span class="emoji-item cursor-pointer text-2xl hover:scale-125 transition-transform"
+                                data-emoji="👍">👍</span>
                         </div>
                     </div>
                 </form>
@@ -134,8 +174,11 @@
     </div>
 
     <!-- TOAST -->
-    <div id="toast" class="fixed top-8 left-1/2 -translate-x-1/2 bg-black text-white px-6 py-3 rounded-full text-sm font-medium shadow-2xl opacity-0 transition-all pointer-events-none z-[100]"></div>
+    <div id="toast"
+        class="fixed top-8 left-1/2 -translate-x-1/2 bg-black text-white px-6 py-3 rounded-full text-sm font-medium shadow-2xl opacity-0 transition-all pointer-events-none z-[100]">
+    </div>
 
     <script src="app.js"></script>
 </body>
+
 </html>
