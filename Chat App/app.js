@@ -164,6 +164,10 @@ class QubiApp {
     Storage.save(msg);
 
     this.nodes.messageInput.value = "";
+    requestAnimationFrame(() => {
+      this.adjustInputHeight();
+    });
+    this.nodes.messageInput.value = "";
     this.processBotResponse(text);
   }
 
@@ -199,7 +203,6 @@ class QubiApp {
 
     const isBot = msg.type === "bot";
 
-    // Use clean template string for engineer readability
     const template = `
             <div class="flex items-start gap-4 message-slide-in ${isBot ? "" : "flex-row-reverse"}">
                 <div class="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center ${isBot ? "bg-[#dcf8c6]" : "bg-gray-200"}">
