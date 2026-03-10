@@ -41,14 +41,14 @@ class Qubi {
   init() {
     console.log(`🚀 Qubi App Initializing...`);
     this.attachEvents();
-    this.loadHistory();
+    // this.loadHistory();
     if (this.nodes.messageInput) this.nodes.messageInput?.focus();
   }
 
   attachEvents() {
     this.nodes.chatForm?.addEventListener("submit", (e) => {
       e.preventDefault();
-      this.handleUserSend();
+      // this.handleUserSend();
     });
 
     this.nodes.emojiBtn?.addEventListener("click", (e) => {
@@ -56,15 +56,35 @@ class Qubi {
       this.nodes.emojiPicker?.classList.toggle("hidden");
     });
 
-    document.querySelectorAll("emoji-item").forEach((item) =>
+    this.nodes.messageInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        this.nodes.chatForm.dispatchEvent(new Event("submit"));
+      }
+    });
+
+    document.querySelectorAll(".emoji-item").forEach((item) =>
       item.addEventListener("click", (e) => {
         e.stopPropagation();
+        const emoji = item.getAttribute("data-emoji") || item.textContent;
+        this.nodes.messageInput.value += emoji;
+        this.nodes.messageInput.focus();
       }),
     );
+
+    this.nodes.messageInput.addEventListener("input", () => {
+      this.adjustInputHeight();
+    });
 
     // Global Events
     document.addEventListener("click", () => {
       this.nodes.emojiPicker?.classList.add("hidden");
     });
   }
+  adjustInputHeight() {
+    const input = this.nodes.messageInput;
+    input.style.height = "auto";
+    input.style.height = input.scrollHeight + `px`;
+  }
 }
+const app = new Qubi();
