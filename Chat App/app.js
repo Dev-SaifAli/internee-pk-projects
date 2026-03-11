@@ -25,6 +25,31 @@ const KEYWORDS = {
   joke: ["joke", "funny", "laugh"],
 };
 
+const Storage = {
+  get() {
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+    } catch (error) {
+      console.log(`Failed to load messages : `, error);
+      return [];
+    }
+  },
+  save(msg) {
+    try {
+      const history = this.get();
+      history.push(msg);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(history.slice(-50)));
+      return true;
+    } catch (error) {
+      console.log(`Failed to save message: `, error);
+      return false;
+    }
+  },
+  clear() {
+    localStorage.removeItem(STORAGE_KEY);
+  },
+};
+
 // UI CONTROLLER
 class Qubi {
   constructor() {
@@ -48,7 +73,7 @@ class Qubi {
   attachEvents() {
     this.nodes.chatForm?.addEventListener("submit", (e) => {
       e.preventDefault();
-      // this.handleUserSend();
+      this.handleUserSend();
     });
 
     this.nodes.emojiBtn?.addEventListener("click", (e) => {
@@ -81,10 +106,50 @@ class Qubi {
       this.nodes.emojiPicker?.classList.add("hidden");
     });
   }
+
+  
   adjustInputHeight() {
     const input = this.nodes.messageInput;
+    // Calc input height
+    const prevHeight = input.offsetHeight;
+
+    // Calc scroll height based on the text
     input.style.height = "auto";
-    input.style.height = input.scrollHeight + `px`;
+    const newHeight = input.scrollHeight + `px`;
+    // input.style.height = prevHeight + "px";
+    requestAnimationFrame(() => {
+      input.style.height = newHeight;
+    });
+  }
+  handleUserSend() {
+    const text = this.nodes.messageInput.value.trim();
+
+    if (!text) {
+      this.showToast("Enter a message!");
+      return;
+    }
+
+    const msg = {
+      id: Date.now(),
+      text: text,
+      type: "user",
+      time: new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
+    };
+
+    this.addMsgToUI(msg);
+    Storage.save(msg);
+
+    this.generate;
+  }
+
+  showToast(msg) {
+    const toast = this.nodes.toast;
+    toast.style.opacity = 1;
+    toast.innerText = msg;
+    setTimeout(() => (toast.style.opacity = 0), 1000);
   }
 }
 const app = new Qubi();
