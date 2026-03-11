@@ -60,6 +60,7 @@ class Qubi {
       chatMessages: document.getElementById("chatMessages"),
       emojiBtn: document.getElementById("emojiBtn"),
       emojiPicker: document.getElementById("emojiPicker"),
+      typingIndicator: document.getElementById("typingIndicator"),
     };
     this.init();
   }
@@ -107,20 +108,19 @@ class Qubi {
     });
   }
 
-  
   adjustInputHeight() {
     const input = this.nodes.messageInput;
-    // Calc input height
     const prevHeight = input.offsetHeight;
 
-    // Calc scroll height based on the text
     input.style.height = "auto";
     const newHeight = input.scrollHeight + `px`;
-    // input.style.height = prevHeight + "px";
+    input.style.height = prevHeight + `px`;
+
     requestAnimationFrame(() => {
       input.style.height = newHeight;
     });
   }
+
   handleUserSend() {
     const text = this.nodes.messageInput.value.trim();
 
@@ -142,9 +142,24 @@ class Qubi {
     this.addMsgToUI(msg);
     Storage.save(msg);
 
-    this.generate;
+    this.processBotResponse(text);
   }
 
+ async processBotResponse(inputText) {
+    this.nodes.typingIndicator.classList.remove("hidden");
+
+
+
+    const msg = {
+      id: Date.now(),
+      text: text,
+      type: "bot",
+      time: new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
+    };
+  }
   showToast(msg) {
     const toast = this.nodes.toast;
     toast.style.opacity = 1;
