@@ -147,6 +147,7 @@ class Qubi {
 
  async processBotResponse(inputText) {
     this.nodes.typingIndicator.classList.remove("hidden");
+    this.nodes.typingIndicator.classList.remove("hidden");
 
 
 
