@@ -145,22 +145,28 @@ class Qubi {
     this.processBotResponse(text);
   }
 
- async processBotResponse(inputText) {
+  async processBotResponse(inputText) {
     this.nodes.typingIndicator.classList.remove("hidden");
-    this.nodes.typingIndicator.classList.remove("hidden");
+    this.scrollToBottom();
 
+    const responseText = await Chatbot.generateResponse(inputText);
 
-
-    const msg = {
-      id: Date.now(),
-      text: text,
+    // Hide indicator & Display msg
+    this.nodes.typingIndicator.classList.add("hidden");
+    const botMsg = {
+      id: Date.now() + 1,
       type: "bot",
+      text: responseText,
       time: new Date().toLocaleTimeString([], {
         hour: "2-digit",
         minute: "2-digit",
       }),
     };
+
+    this.addMessageToUI(botMsg);
+    Storage.save(botMsg);
   }
+
   showToast(msg) {
     const toast = this.nodes.toast;
     toast.style.opacity = 1;
