@@ -166,7 +166,12 @@ class Qubi {
     this.addMessageToUI(botMsg);
     Storage.save(botMsg);
   }
-
+  scrollToBottom() {
+    this.nodes.messageInput.scrollTo({
+      top: this.nodes.messageInput.scrollHeight,
+      behavior: "smooth",
+    });
+  }
   showToast(msg) {
     const toast = this.nodes.toast;
     toast.style.opacity = 1;
