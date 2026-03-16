@@ -103,7 +103,7 @@ class Qubi {
     this.nodes.messageInput.addEventListener("keydown", (e) => {
       if (e.key === "Enter" && !e.shiftKey) {
         e.preventDefault();
-        this.nodes.chatForm.dispatchEvent(new Event("submit"));
+        this.handleUserSend();
       }
     });
 
@@ -130,6 +130,12 @@ class Qubi {
     // Global Events
     document.addEventListener("click", () => {
       this.nodes.emojiPicker?.classList.add("hidden");
+    });
+  }
+  loadHistory() {
+    const history = Storage.get();
+    history.forEach((msg) => {
+      this.addMessageToUI(msg);
     });
   }
 
