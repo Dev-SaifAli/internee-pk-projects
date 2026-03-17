@@ -118,10 +118,10 @@
             </div>
 
             <!-- INPUT AREA (Refined Qubi Style) -->
-            <div class=" p-4 md:px-24 md:pb-10 bg-transparent ">
+            <div class=" p-4 md:px-24 md:pb-10 bg-transparent  ">
                 <form id="chatForm" class="relative max-w-5xl mx-auto">
                     <div
-                        class="bg-[#f4f4f4] rounded-[32px] max-w-[70%]  p-2 pr-3 flex items-center justify-center gap-3 border border-transparent focus-within:bg-white focus-within:border-purple-200 shadow-sm transition-all group">
+                        class="bg-[#f4f4f4] rounded-[32px] w-sm  p-2 pr-3 flex items-center justify-center gap-3 border border-transparent focus-within:bg-white focus-within:border-purple-200 shadow-sm transition-all group">
                         <button type="button" id="emojiBtn"
                             class="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:bg-gray-200 transition-colors">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -185,7 +185,7 @@
 
 <div class=flex gap-4 items-start message-slide-in ${isBot ? "" : "flex-row-reverse" }">
     <div class=flex items-center justify-center h-8 w-8 ${isBot ? "bg-[#dcf8c6]" : "bg-gray-200" } " >${isBot ? this.getBotIcon() : this.getUserIcon()}</div>
-    <div class="flex flex-col max-w-[75%]">
+    <div class=" flex flex-col max-w-[75%]">
         <div class="py-3 px-4 rounded-2xl ${
       isBot
         ? " bg-white border border-gray-100" : "bg-purple-100 text-gray-900 border border-purple-200 shadow-sm" }">
