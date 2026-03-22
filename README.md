@@ -35,3 +35,31 @@ Collection of work completed during my virtual internship program focusing on we
 ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)  
 **[View Project →](./Drag%20and%20Drop%20File%20Uploader/)**
 
+### Task 4: Chat App
+**Status:** ✅ Completed  
+**Description:** Created a State-Driven Smart Chatbot Interface (Qubi AI) 🤖 
+🛠️ Key Technical Features:
+
+Asynchronous Bot Logic: Leveraged Async/Await and Promises to create a realistic "Human-like" thinking delay, synchronized with a smooth Typing Indicator.
+
+Persistent Chat History: Integrated LocalStorage to ensure the conversation remains intact, allowing for a seamless user journey across sessions.
+
+Intent Recognition Engine: Developed a custom keyword-based logic that identifies user intent (Greetings, Jokes, or Queries) to deliver relevant responses.
+
+Dynamic UI/UX: Used Tailwind CSS to build auto-resizing textareas and "slide-in" message animations for a modern feel.
+
+Smart Auto-Scroll: Implemented a scroll-to-bottom logic that keeps the latest messages in view, ensuring the user never misses a response
+
+**Technologies:** ![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=flat&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/-CSS3-1572B6?style=flat&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)  
+**[View Project →](./Chat%20App/)**
+
+### Task 5: Agency Website
+**Status:** ✅ Completed  
+**Description:** Created a responsive and interactive website with smooth animations   
+**Technologies:** ![React](https://img.shields.io/badge/-React-61DAFB?style=flat&logo=react&logoColor=white)
+![Motion.dev](https://img.shields.io/badge/-Motion.dev-000000?style=flat&logo=motion&logoColor=yellow)
+
+
+**[View Project →](./Agency%20Website/)**
