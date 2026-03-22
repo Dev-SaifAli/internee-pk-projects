@@ -37,11 +37,23 @@ Collection of work completed during my virtual internship program focusing on we
 
 ### Task 4: Multi Step Form
 **Status:** ✅ Completed  
-**Description:** Created a Image File Uploader using FileReaderAPI, File and Drag/Drop events for previewing Image File and error handling.   
+**Description:** Created a High-Conversion Multi-Step Signup Flow 
+🛠️ Key Technical Features:
+
+State Management: Built a centralized JavaScript state to handle data across 4 distinct steps.
+
+Data Persistence: Integrated LocalStorage so users never lose their progress on a page refresh.
+
+Real-time Validation: Implemented "Airbnb-style" validation—errors appear on blur and vanish the moment the user fixes them.
+
+Dynamic UI: A responsive sidebar and mobile progress dots that update in real-time as steps are completed.
+
+Polished UX: Added micro-interactions like a "shake" animation on failed validation to provide instant feedback.
+
 **Technologies:** ![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=flat&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/-CSS3-1572B6?style=flat&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)  
-**[View Project →](./Drag%20and%20Drop%20File%20Uploader/)**
+**[View Project →](./Multi%20step%20form/)**
 
 ### Task 5: Chat App
 **Status:** ✅ Completed  
