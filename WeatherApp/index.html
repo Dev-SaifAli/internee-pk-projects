@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherVault</title>
+    <link rel="shortcut icon" href="../assets/favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="./css/main.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons (optional, for icons) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+</head>
+
+<body>
+
+    <!-- Auth Container -->
+    <div id="authPage" class="d-flex align-items-center justify-content-center min-vh-100 ">
+        <div class="container">
+            <div class="row">
+
+                <!-- Left Side - Brand Info -->
+                <div
+                    class="col-lg-6 d-none d-lg-flex flex-column justify-content-center align-items-center bg-primary p-5 rounded-start">
+                    <div class="text-center text-white">
+                        <h1 class="display-1 mb-3">🌍</h1>
+                        <h2 class="h3 mb-3 fw-bold">WeatherVault</h2>
+                        <p class="lead mb-4">Know your weather, Own your day</p>
+                        <p class="text-white-50">Get real-time weather updates<br>for any location worldwide</p>
+                    </div>
+                </div>
+
+                <!-- Right Side - Login Form -->
+                <div class="col-lg-6 d-flex flex-column justify-content-center p-5 bg-white rounded-end">
+
+                    <!-- Brand Section (Mobile) -->
+                    <div class="text-center mb-5 d-lg-none">
+                        <h2 class="h3 fw-bold mb-2">🌍 WeatherVault</h2>
+                        <p class="text-muted">Your Personal Weather Companion</p>
+                    </div>
+
+                    <!-- Form Title (Desktop) -->
+                    <div class="mb-5 d-none d-lg-block">
+                        <h2 class="h3 fw-bold mb-2">Welcome Back</h2>
+                        <p class="text-muted">Sign in to continue to WeatherVault</p>
+                    </div>
+
+                    <!-- Auth Form -->
+                    <form id="authForm" class="needs-validation" novalidate>
+
+                        <!-- Email Input -->
+                        <div class="mb-4">
+                            <label for="emailInput" class="form-label fw-bold">Email Address</label>
+                            <input type="email" class="form-control form-control-lg" id="emailInput" name="email"
+                                placeholder="Enter your email" required aria-label="Email address">
+                            <div class="invalid-feedback d-none" id="emailError">
+                                Please provide a valid email address.
+                            </div>
+                            <div class="valid-feedback">
+                                ✓ Email looks good!
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid mb-4">
+                            <button type="submit" class="btn btn-primary btn-lg fw-bold" id="loginBtn">
+                                <span id="loginBtnText">Enter Weather</span>
+                                <i class="bi bi-arrow-right ms-2"></i>
+                            </button>
+                        </div>
+
+                        <!-- Info Text -->
+                        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                            <i class="bi bi-info-circle me-2"></i>
+                            <strong>No password needed!</strong> We keep it simple and secure.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+
+                    </form>
+
+                    <!-- Footer Info -->
+                    <p class="text-center text-muted small mt-4">
+                        Your data stays private • Works offline • Always free
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Weather App -->
+    <div id="weatherApp">
+        <!-- Header -->
+        <nav class="navbar w-75 mx-auto mt-4  shadow-sm sticky-top blur-card">
+            <div class="container">
+                <span class="navbar-brand mb-0 h1">
+                    <span style="font-size: 28px;">🌍</span>
+                    <strong>WeatherVault</strong>
+                </span>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-outline-secondary" id="themeBtn" title="Toggle Theme">
+                        <i class="bi bi-moon"></i>
+                    </button>
+                    <button class="btn btn-outline-danger" id="logoutBtn">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Greeting Section -->
+        <div class="container mt-4 mb-4">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="fw-bold" id="updateDate">Feb 07, Mon</h2>
+                    <h2 class="fw-normal" id="greetingMsg">Good Morning, User! 👋</h2>
+                    <p class="text-muted">Check weather updates for your favorite cities</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Section -->
+        <div class="container mb-5">
+            <div class="row g-3 align-items-center justify-content-center">
+                <!-- Search Input -->
+                <div class="col-md-5">
+                    <div class="input-group input-group-lg">
+                        <input type="text" class="form-control" id="searchInput" placeholder="Enter city name..."
+                            aria-label="city name">
+                        <button type="button" id="searchBtn" class="btn btn-primary">
+                            <i class="bi bi-search"></i> Search
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Location Button -->
+                <div class="col-md-2">
+                    <button type="button" id="locationBtn" class="btn btn-warning btn-lg w-100"
+                        title="Use my current location">
+                        <i class="bi bi-geo-alt-fill"></i> My Location
+                    </button>
+                </div>
+
+                <!-- Theme Toggle -->
+                <!-- <div class="col-md-3">
+                    <button type="button" id="themeToggle" class="btn btn-secondary btn-lg w-100">
+                        <i class="bi bi-moon-stars"></i> Dark Mode
+                    </button>
+                </div> -->
+            </div>
+        </div>
+
+        <!-- Recent Searches -->
+        <div class="container mb-4">
+            <div id="recentSearchesContainer" class="d-none">
+                <h5 class="fw-bold mb-3">Recent Searches</h5>
+                <div class="d-flex flex-wrap gap-2" id="recentList">
+                    <!-- Recent search buttons will be added here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="d-none">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center py-5">
+                        <div class="spinner-border text-primary mb-3" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="text-muted">Fetching weather data...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error State -->
+        <div id="errorState" class="d-none">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <i class="bi bi-exclamation-triangle"></i>
+                            <strong id="errorTitle">Error!</strong>
+                            <p id="errorMessage" class="mb-0 mt-2"></p>
+                            <button type="button" class="btn btn-sm btn-outline-danger mt-3"
+                                onclick="document.getElementById('searchInput').focus()">
+                                Try Another Search
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="d-none">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2 text-center py-5">
+                        <h1 style="font-size: 80px;">🌤️</h1>
+                        <h3 class="fw-bold mt-3">Ready to check the weather?</h3>
+                        <p class="text-muted mb-4">Search for a city or use your current location to get started</p>
+                        <div class="d-flex gap-2 justify-content-center">
+                            <button class="btn btn-primary btn-lg"
+                                onclick="document.getElementById('searchInput').focus()">
+                                <i class="bi bi-search"></i> Search City
+                            </button>
+                            <button class="btn btn-warning btn-lg" id="emptyLocationBtn">
+                                <i class="bi bi-geo-alt-fill"></i> Use Location
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weather Display -->
+        <div id="weatherDisplay">
+            <div class="container ">
+
+                <!-- Current Weather Card -->
+                <div class="row mb-4 ">
+                    <div class="col-md-8 offset-md-2">
+                        <div class="blur-card">
+                            <div class="card-body p-5 ">
+
+                                <!-- Location Header -->
+                                <div class="d-flex justify-content-between align-items-start mb-4">
+                                    <div>
+                                        <h2 class="card-title fw-bold mb-0" id="cityName">London, GB</h2>
+                                        <p class="text-muted small mb-0">Updated at <span id="updateTime">12:30</span>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Current Temperature -->
+                                <div class="row mb-5 align-items-center">
+                                    <div class="col-md-4 text-center">
+                                        <div style="font-size: 80px;" id="weatherIcon">☀️</div>
+                                        <p class="text-muted" id="weatherDesc">Sunny</p>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="display-3 fw-bold mb-2">
+                                            <span id="temp">15</span>°C
+                                        </div>
+                                        <p class="lead text-muted mb-0">
+                                            Feels like <strong id="feelsLike">12 <span>°C</span> </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Weather Details Grid -->
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="card bg-light border-0">
+                                            <div class="card-body">
+                                                <p class="card-text text-muted small mb-2">
+                                                    <i class="bi bi-droplet"></i> Humidity
+                                                </p>
+                                                <p class="h5 fw-bold mb-0" id="humidity">65%</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card bg-light border-0">
+                                            <div class="card-body">
+                                                <p class="card-text text-muted small mb-2">
+                                                    <i class="bi bi-wind"></i> Wind Speed
+                                                </p>
+                                                <p class="h5 fw-bold mb-0" id="windSpeed">3.5 m/s</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card bg-light border-0">
+                                            <div class="card-body">
+                                                <p class="card-text text-muted small mb-2">
+                                                    <i class="bi bi-speedometer2"></i> Pressure
+                                                </p>
+                                                <p class="h5 fw-bold mb-0" id="pressure">1013 hPa</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card bg-light border-0">
+                                            <div class="card-body">
+                                                <p class="card-text text-muted small mb-2">
+                                                    <i class="bi bi-eye"></i> Visibility
+                                                </p>
+                                                <p class="h5 fw-bold mb-0" id="visibility">10 km</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card bg-light border-0">
+                                            <div class="card-body">
+                                                <p class="card-text text-muted small mb-2">
+                                                    <i class="bi bi-thermometer"></i> Temperature Min
+                                                </p>
+                                                <p class="h5 fw-bold mb-0" id="tempMin">12°C</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card bg-light border-0">
+                                            <div class="card-body">
+                                                <p class="card-text text-muted small mb-2">
+                                                    <i class="bi bi-sunrise"></i> Sunrise
+                                                </p>
+                                                <p class="h5 fw-bold mb-0" id="sunrise">07:00</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card bg-light border-0">
+                                            <div class="card-body">
+                                                <p class="card-text text-muted small mb-2">
+                                                    <i class="bi bi-sunset"></i> Sunset
+                                                </p>
+                                                <p class="h5 fw-bold mb-0" id="sunset">18:00</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <footer>
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <p> &copy; 2026 All Rights Reserved. Made with ❣️ by <a href="https://github.com/Dev-SaifAli">Dev -SaifAli </a></p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Your Scripts -->
+    <script type="module" src="js/constants.js"></script>
+    <script type="module" src="js/storage.js"></script>
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/main.js"></script>
+
+    <script>
+        (() => {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+
+</body>
+
+</html>
