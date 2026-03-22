@@ -32,13 +32,13 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <a href="/" className="text-2xl font-bold tracking-tighter flex items-center gap-2">
           <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
-            <div className="w-3 h-3 bg-white rounded-sm rotate-45" />
+            <div className="w-3 h-3 bg-white  rotate-5" />
           </div>
           <span>LUMINA</span>
         </a>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-8 ">
           {navLinks.map((link) => (
             <a
               key={link.name}
